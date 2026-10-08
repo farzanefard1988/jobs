@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EU Design Jobs — Farzaneh</title>
+<meta name="description" content="Senior Product Designer roles in European travel &amp; mobility with visa sponsorship.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap">
+<style>
+  :root {
+    --bg: #f6f5f1;
+    --surface: #ffffff;
+    --surface-2: #f0eee8;
+    --border: #e2dfd6;
+    --fg: #1b1d1a;
+    --fg-muted: #6a6d64;
+    --accent: #1f4b3a;
+    --accent-soft: #e6ede8;
+    --warn: #a65e2b;
+    --good: #2f6b3a;
+    --bad: #8a2b2b;
+    --sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --serif: 'Fraunces', ui-serif, Georgia, serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15171a;
+      --surface: #1c1f22;
+      --surface-2: #22262a;
+      --border: #2e3237;
+      --fg: #ebe9e2;
+      --fg-muted: #969a92;
+      --accent: #7fc7a7;
+      --accent-soft: #1e2b24;
+      --warn: #d4a176;
+      --good: #8fc48c;
+      --bad: #e07878;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15171a;
+    --surface: #1c1f22;
+    --surface-2: #22262a;
+    --border: #2e3237;
+    --fg: #ebe9e2;
+    --fg-muted: #969a92;
+    --accent: #7fc7a7;
+    --accent-soft: #1e2b24;
+    --warn: #d4a176;
+    --good: #8fc48c;
+    --bad: #e07878;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; padding-block: 32px 80px; }
+  header { display: flex; flex-wrap: wrap; gap: 16px; align-items: baseline; justify-content: space-between; margin-bottom: 24px; }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(28px, 4vw, 40px); margin: 0 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+  .sub { color: var(--fg-muted); font-size: 13px; }
+  .meta { color: var(--fg-muted); font-size: 12px; text-align: right; }
+  .meta a { color: var(--accent); text-decoration: none; }
+  .theme-toggle { background: var(--surface); border: 1px solid var(--border); color: var(--fg); border-radius: 999px; padding: 5px 11px; font: inherit; font-size: 12px; cursor: pointer; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .stat .num { font-family: var(--serif); font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .stat .lbl { color: var(--fg-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; align-items: center; }
+  .pill { font-size: 12px; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--fg-muted); cursor: pointer; font: inherit; }
+  .pill[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600; }
+  .spacer { flex: 1; }
+  button.add { background: var(--accent); color: var(--bg); border: none; border-radius: 8px; padding: 8px 14px; font-weight: 600; font-size: 13px; cursor: pointer; font-family: inherit; }
+  button.add:hover { filter: brightness(1.1); }
+  .scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+  table { width: 100%; min-width: 820px; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  th { background: var(--surface-2); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-muted); }
+  td.company { font-weight: 600; min-width: 140px; }
+  td.loc { color: var(--fg-muted); font-size: 12px; }
+  td a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted currentColor; }
+  td a:hover { border-bottom-style: solid; }
+  .status { font-size: 11px; padding: 3px 9px; border-radius: 999px; font-weight: 600; display: inline-block; }
+  .s-found     { background: var(--surface-2); color: var(--fg-muted); }
+  .s-applied   { background: var(--accent-soft); color: var(--accent); }
+  .s-interview { background: color-mix(in oklab, var(--warn) 20%, transparent); color: var(--warn); }
+  .s-offer     { background: color-mix(in oklab, var(--good) 22%, transparent); color: var(--good); }
+  .s-rejected  { background: color-mix(in oklab, var(--bad) 17%, transparent); color: var(--bad); }
+  select.st { font: inherit; font-size: 11px; background: transparent; color: inherit; border: 1px solid var(--border); border-radius: 6px; padding: 3px 7px; }
+  .flag { font-family: var(--serif); font-size: 11px; letter-spacing: 0.04em; color: var(--fg-muted); margin-top: 3px; font-style: italic; }
+  .notes { font-size: 12px; color: var(--fg-muted); white-space: pre-wrap; min-height: 1em; }
+  .notes[contenteditable]:focus { outline: 2px solid var(--accent); outline-offset: 2px; background: var(--surface-2); border-radius: 4px; }
+  dialog { border: 1px solid var(--border); border-radius: 12px; background: var(--surface); color: var(--fg); padding: 20px; max-width: 480px; width: 92vw; }
+  dialog::backdrop { background: rgba(0,0,0,0.5); }
+  dialog h3 { font-family: var(--serif); margin: 0 0 12px; font-weight: 600; }
+  dialog form { display: grid; gap: 10px; }
+  dialog label { display: grid; gap: 4px; font-size: 12px; color: var(--fg-muted); }
+  dialog input, dialog textarea, dialog select { font: inherit; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 7px 9px; color: var(--fg); font-size: 13px; }
+  dialog textarea { min-height: 60px; resize: vertical; }
+  .dactions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
+  .dactions button { font: inherit; padding: 7px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2); color: var(--fg); cursor: pointer; }
+  .dactions button[type="submit"] { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+  .empty { text-align: center; padding: 48px 20px; color: var(--fg-muted); }
+  .empty h2 { font-family: var(--serif); font-weight: 500; margin: 0 0 6px; color: var(--fg); }
+  footer { margin-top: 32px; color: var(--fg-muted); font-size: 12px; text-align: center; line-height: 1.6; }
+  @media (max-width: 520px) {
+    h1 { font-size: 26px; }
+    .wrap { padding-block: 20px 60px; }
+    .meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>EU Design Jobs</h1>
+      <div class="sub">Travel &amp; mobility · Senior Product Designer · visa-friendly</div>
+    </div>
+    <div class="meta">
+      Farzaneh Abasnezhadfard · <a href="https://www.farzaneha.com" target="_blank" rel="noopener">portfolio</a> · <a href="https://linkedin.com/in/farzanea" target="_blank" rel="noopener">LinkedIn</a>
+      <br><button class="theme-toggle" id="themeBtn" type="button">Toggle theme</button>
+    </div>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="bar">
+    <button class="pill" data-filter="all" aria-pressed="true" type="button">All</button>
+    <button class="pill" data-filter="found" type="button">Found</button>
+    <button class="pill" data-filter="applied" type="button">Applied</button>
+    <button class="pill" data-filter="interview" type="button">Interviewing</button>
+    <button class="pill" data-filter="offer" type="button">Offer</button>
+    <button class="pill" data-filter="rejected" type="button">Rejected</button>
+    <div class="spacer"></div>
+    <button class="add" id="addBtn" type="button">+ Add job</button>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Role</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Found</th>
+          <th>Links</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+
+  <footer>
+    <div>Seed data lives in <code>SEED_JOBS</code> inside this file. Status, notes and new rows added through the UI persist only in this browser (localStorage).</div>
+    <div>To make an update permanent, edit the file in your repo and push.</div>
+  </footer>
+</div>
+
+<dialog id="dlg">
+  <h3 id="dlgTitle">Add job</h3>
+  <form id="form">
+    <label>Company<input name="company" required></label>
+    <label>Role<input name="role" required></label>
+    <label>City<input name="city"></label>
+    <label>Country<input name="country"></label>
+    <label>Posted<input name="posted" placeholder="2026-10-08 or 'listed open'"></label>
+    <label>Source URL<input name="sourceUrl" type="url"></label>
+    <label>Apply URL<input name="applyUrl" type="url"></label>
+    <label>Resume URL<input name="resumeUrl" type="url"></label>
+    <label>Cover letter URL<input name="coverUrl" type="url"></label>
+    <label>Relocation note<input name="reloc"></label>
+    <label>Status
+      <select name="status">
+        <option value="found">Found</option>
+        <option value="applied">Applied</option>
+        <option value="interview">Interviewing</option>
+        <option value="offer">Offer</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </label>
+    <label>Notes<textarea name="notes"></textarea></label>
+    <div class="dactions">
+      <button type="button" id="cancelBtn">Cancel</button>
+      <button type="submit">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+// === Seed jobs (edit this list to add new jobs permanently; keep ids stable) ===
+const SEED_JOBS = [
+  {
+    id: "getyourguide-senior-pd-b2c-berlin-2026-10-08",
+    company: "GetYourGuide",
+    role: "Senior Product Designer (B2C)",
+    city: "Berlin",
+    country: "Germany",
+    posted: "Listed as currently open",
+    found: "2026-10-08",
+    sourceUrl: "https://getyourguide.careers/jobs/7559680",
+    applyUrl: "https://getyourguide.careers/jobs/7559680",
+    resumeUrl: "https://docs.google.com/document/d/11c1YKudx3q4erMW6a1zxo1qfPOBhJhtmyJOZX9W8crc/edit",
+    coverUrl: "https://docs.google.com/document/d/1yX4lP9I_qZnSAbt1uGDGRtqy4VUlQ8UcfE5rPi2yyW4/edit",
+    reloc: "Relocation assistance and visa sponsorship (per relocate.me)",
+    notes: "B2C Reviews team — tight fit for SnappTrip filters/A-B/reviews work."
+  },
+  {
+    id: "vimcar-senior-pd-berlin-2026-10-08",
+    company: "Vimcar",
+    role: "Senior Product Designer",
+    city: "Berlin",
+    country: "Germany",
+    posted: "Listed as currently open",
+    found: "2026-10-08",
+    sourceUrl: "https://relocate.me/germany/berlin/vimcar/senior-product-designer-9175",
+    applyUrl: "https://relocate.me/germany/berlin/vimcar/senior-product-designer-9175",
+    resumeUrl: "https://docs.google.com/document/d/1HY7_xpTC_j2ZHu865bP8kTuCUU2324UkFFBAW_hvuwQ/edit",
+    coverUrl: "https://docs.google.com/document/d/1F-GWWWtv0HMWZ_vV3q5dczgMJVzgsWbKMPEiuZh_YuQ/edit",
+    reloc: "Relocation assistance with a great team to support your move to Berlin",
+    notes: "Fleet management SaaS — mobility-adjacent. Pair with MintList car-trading experience."
+  },
+  {
+    id: "travelperk-senior-pd-automate-barcelona-2026-10-08",
+    company: "TravelPerk",
+    role: "Senior Product Designer, Automate",
+    city: "Barcelona",
+    country: "Spain",
+    posted: "Listed as currently open",
+    found: "2026-10-08",
+    sourceUrl: "https://weloveproduct.co/jobs/senior-product-designer-automate-travelperk-yw7u8q",
+    applyUrl: "https://weloveproduct.co/jobs/senior-product-designer-automate-travelperk-yw7u8q",
+    resumeUrl: "https://docs.google.com/document/d/1YUEMJjzh2oIwMwZu7OvY6bW8mfFtlK9qsN4AYgptCMI/edit",
+    coverUrl: "https://docs.google.com/document/d/1HN6ciUMXyigtxeptUIKGzW2sZ0uyhpnamtVzKk0qDPE/edit",
+    reloc: "Known HSM sponsor — verify at application",
+    notes: "Automate = policy/approval automation. Direct match to SnappTrip cancellation workflows."
+  }
+];
+
+const STATUSES = ['found','applied','interview','offer','rejected'];
+const LABELS = { found:'Found', applied:'Applied', interview:'Interviewing', offer:'Offer', rejected:'Rejected' };
+const LS_KEY = 'eu-design-jobs-state-v1';
+
+function loadLocal() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch { return {}; }
+}
+function saveLocal(state) {
+  try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch {}
+}
+
+let state = loadLocal(); // { overrides: {id: {status, notes}}, extras: [job] }
+state.overrides ||= {};
+state.extras ||= [];
+
+function allJobs() {
+  const seeds = SEED_JOBS.map(j => {
+    const o = state.overrides[j.id] || {};
+    return { ...j, ...o };
+  });
+  return [...seeds, ...state.extras].sort((a,b) => (b.found||'').localeCompare(a.found||''));
+}
+
+let currentFilter = 'all';
+const rowsEl = document.getElementById('rows');
+const statsEl = document.getElementById('stats');
+
+function esc(s){ return (s==null?'':String(s)).replace(/[<>&"']/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function render() {
+  const jobs = allJobs();
+  const list = currentFilter === 'all' ? jobs : jobs.filter(j => (j.status||'found') === currentFilter);
+
+  const by = {}; STATUSES.forEach(s => by[s] = 0);
+  jobs.forEach(j => by[j.status||'found']++);
+  statsEl.innerHTML = `
+    <div class="stat"><div class="num">${jobs.length}</div><div class="lbl">Total</div></div>
+    <div class="stat"><div class="num">${by.applied}</div><div class="lbl">Applied</div></div>
+    <div class="stat"><div class="num">${by.interview}</div><div class="lbl">Interviewing</div></div>
+    <div class="stat"><div class="num">${by.offer}</div><div class="lbl">Offers</div></div>
+    <div class="stat"><div class="num">${by.found}</div><div class="lbl">To apply</div></div>
+  `;
+
+  if (!list.length) {
+    rowsEl.innerHTML = `<tr><td colspan="7" class="empty"><h2>Nothing matches this filter</h2><div>Switch to All or add a job.</div></td></tr>`;
+    return;
+  }
+
+  rowsEl.innerHTML = list.map(j => {
+    const st = j.status || 'found';
+    const sel = `<select class="st" data-id="${esc(j.id)}">${STATUSES.map(s=>`<option value="${s}" ${s===st?'selected':''}>${LABELS[s]}</option>`).join('')}</select>`;
+    const links = [
+      j.sourceUrl && `<a href="${esc(j.sourceUrl)}" target="_blank" rel="noopener">source</a>`,
+      j.applyUrl && j.applyUrl !== j.sourceUrl && `<a href="${esc(j.applyUrl)}" target="_blank" rel="noopener">apply</a>`,
+      j.resumeUrl && `<a href="${esc(j.resumeUrl)}" target="_blank" rel="noopener">CV</a>`,
+      j.coverUrl && `<a href="${esc(j.coverUrl)}" target="_blank" rel="noopener">letter</a>`,
+    ].filter(Boolean).join(' · ');
+    return `<tr>
+      <td class="company">${esc(j.company)}<div class="flag">${esc(j.posted||'')}</div></td>
+      <td>${esc(j.role)}</td>
+      <td class="loc">${esc(j.city||'')}${j.city&&j.country?', ':''}${esc(j.country||'')}<div class="flag">${esc(j.reloc||'')}</div></td>
+      <td>${sel}</td>
+      <td class="loc">${esc(j.found||'')}</td>
+      <td>${links||'<span class="loc">—</span>'}</td>
+      <td><div class="notes" contenteditable data-id="${esc(j.id)}">${esc(j.notes||'')}</div></td>
+    </tr>`;
+  }).join('');
+}
+
+document.querySelectorAll('.pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pill').forEach(b => b.setAttribute('aria-pressed', 'false'));
+    btn.setAttribute('aria-pressed', 'true');
+    currentFilter = btn.dataset.filter;
+    render();
+  });
+});
+
+rowsEl.addEventListener('change', (e) => {
+  if (e.target.matches('select.st')) {
+    const id = e.target.dataset.id;
+    const status = e.target.value;
+    const extra = state.extras.find(j => j.id === id);
+    if (extra) { extra.status = status; } else { state.overrides[id] = { ...(state.overrides[id]||{}), status }; }
+    saveLocal(state);
+    render();
+  }
+});
+
+rowsEl.addEventListener('blur', (e) => {
+  if (e.target.matches('.notes[contenteditable]')) {
+    const id = e.target.dataset.id;
+    const notes = e.target.textContent;
+    const extra = state.extras.find(j => j.id === id);
+    if (extra) { extra.notes = notes; } else { state.overrides[id] = { ...(state.overrides[id]||{}), notes }; }
+    saveLocal(state);
+  }
+}, true);
+
+const dlg = document.getElementById('dlg');
+const form = document.getElementById('form');
+document.getElementById('addBtn').addEventListener('click', () => { form.reset(); dlg.showModal(); });
+document.getElementById('cancelBtn').addEventListener('click', () => dlg.close());
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(form));
+  const job = { ...data, id: 'local_' + Date.now().toString(36), found: new Date().toISOString().slice(0,10) };
+  state.extras.unshift(job);
+  saveLocal(state);
+  dlg.close();
+  render();
+});
+
+// Theme toggle (persisted)
+const themeBtn = document.getElementById('themeBtn');
+try {
+  const t = localStorage.getItem('eu-design-jobs-theme');
+  if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+} catch {}
+themeBtn.addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('eu-design-jobs-theme', next); } catch {}
+});
+
+render();
+</script>
+</body>
+</html>
