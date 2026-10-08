@@ -1,0 +1,65 @@
+/* Shared resume stylesheet — mirrors Farzaneh-Abasnezhadfard-Resume.pdf layout */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --fg: #1a1a1a;
+  --fg-muted: #4a4a4a;
+  --accent: #0b57d0;
+  --rule: #c8c8c8;
+  --rule-strong: #1a1a1a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #e8e8e8; color: var(--fg); font-family: 'Inter', -apple-system, Segoe UI, sans-serif; font-size: 10.5pt; line-height: 1.45; }
+
+.page {
+  width: 8.5in;
+  min-height: 11in;
+  margin: 24px auto;
+  padding: 0.55in 0.6in;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  display: grid;
+  grid-template-columns: 1fr 2.4in;
+  gap: 0.35in;
+}
+
+h1 { font-size: 28pt; font-weight: 700; letter-spacing: -0.01em; line-height: 1.05; margin-bottom: 2px; }
+.sub-title { font-size: 11.5pt; font-weight: 600; color: var(--fg); margin-bottom: 18px; }
+
+h2 { font-size: 10.5pt; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; border-bottom: 1.5px solid var(--rule-strong); padding-bottom: 3px; margin-top: 14px; margin-bottom: 10px; text-transform: uppercase; }
+h2:first-of-type { margin-top: 0; }
+
+/* ---------- LEFT COLUMN ---------- */
+.left h3 { font-size: 10.5pt; font-weight: 400; margin-top: 10px; }
+.left h3 .company { font-weight: 700; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.left h3:first-of-type { margin-top: 0; }
+.left .role { font-style: italic; font-weight: 600; font-size: 10.5pt; margin-top: 1px; }
+.left .meta { font-size: 10pt; color: var(--fg); margin-top: 1px; margin-bottom: 5px; }
+.left ul { list-style: disc; padding-left: 16px; margin-top: 2px; }
+.left li { margin-bottom: 4px; font-size: 10pt; color: var(--fg); }
+.left li::marker { color: var(--fg); }
+
+/* ---------- RIGHT COLUMN ---------- */
+.right .contact p { font-size: 10pt; margin-bottom: 2px; color: var(--fg); }
+.right .contact a { color: var(--accent); text-decoration: none; }
+.right .contact strong { font-weight: 600; }
+
+.right .skill-group { margin-bottom: 10px; }
+.right .skill-group h4 { font-size: 10pt; font-weight: 700; margin-bottom: 3px; }
+.right .skill-group p { font-size: 10pt; color: var(--fg); line-height: 1.4; }
+
+.right .edu-item, .right .lect-item { margin-bottom: 8px; }
+.right .edu-item .inst, .right .lect-item .inst { font-size: 10pt; font-weight: 700; }
+.right .edu-item .deg, .right .lect-item .deg { font-size: 10pt; }
+.right .edu-item .loc { font-size: 10pt; color: var(--fg-muted); }
+
+.right .lang p { font-size: 10pt; margin-bottom: 2px; }
+.right .lang strong { font-weight: 700; }
+
+/* ---------- PRINT ---------- */
+@media print {
+  html, body { background: #fff; }
+  .page { margin: 0; box-shadow: none; width: 100%; min-height: auto; padding: 0.5in 0.55in; }
+  @page { size: letter; margin: 0; }
+}

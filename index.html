@@ -146,6 +146,7 @@
           <th>Company</th>
           <th>Role</th>
           <th>Location</th>
+          <th>Posted</th>
           <th>Status</th>
           <th>Found</th>
           <th>Links</th>
@@ -205,7 +206,7 @@ const SEED_JOBS = [
     found: "2026-10-08",
     sourceUrl: "https://getyourguide.careers/jobs/7559680",
     applyUrl: "https://getyourguide.careers/jobs/7559680",
-    resumeUrl: "https://docs.google.com/document/d/1-IpZmLMhwRt57cMs-PJMlq5dRoOc2TULcWUUbvmgY6E/edit",
+    resumeUrl: "resumes/getyourguide-b2c-berlin.html",
     coverUrl: "https://docs.google.com/document/d/1yX4lP9I_qZnSAbt1uGDGRtqy4VUlQ8UcfE5rPi2yyW4/edit",
     reloc: "Relocation assistance and visa sponsorship (per relocate.me)",
     notes: "B2C Reviews team — tight fit for SnappTrip filters/A-B/reviews work."
@@ -220,7 +221,7 @@ const SEED_JOBS = [
     found: "2026-10-08",
     sourceUrl: "https://relocate.me/germany/berlin/vimcar/senior-product-designer-9175",
     applyUrl: "https://relocate.me/germany/berlin/vimcar/senior-product-designer-9175",
-    resumeUrl: "https://docs.google.com/document/d/1qsTupx7Q5yyfbi-_2Oc-y1nGuIJVsuNb6AAMatq8qQo/edit",
+    resumeUrl: "resumes/vimcar-berlin.html",
     coverUrl: "https://docs.google.com/document/d/1F-GWWWtv0HMWZ_vV3q5dczgMJVzgsWbKMPEiuZh_YuQ/edit",
     reloc: "Relocation assistance with a great team to support your move to Berlin",
     notes: "Fleet management SaaS — mobility-adjacent. Pair with MintList car-trading experience."
@@ -235,7 +236,7 @@ const SEED_JOBS = [
     found: "2026-10-08",
     sourceUrl: "https://weloveproduct.co/jobs/senior-product-designer-automate-travelperk-yw7u8q",
     applyUrl: "https://weloveproduct.co/jobs/senior-product-designer-automate-travelperk-yw7u8q",
-    resumeUrl: "https://docs.google.com/document/d/1e9rcEIYIlnKi5ut5m1Shdfr8rRdojupSRqmf1vI_gwU/edit",
+    resumeUrl: "resumes/travelperk-automate-barcelona.html",
     coverUrl: "https://docs.google.com/document/d/1HN6ciUMXyigtxeptUIKGzW2sZ0uyhpnamtVzKk0qDPE/edit",
     reloc: "Known HSM sponsor — verify at application",
     notes: "Automate = policy/approval automation. Direct match to SnappTrip cancellation workflows."
@@ -286,7 +287,7 @@ function render() {
   `;
 
   if (!list.length) {
-    rowsEl.innerHTML = `<tr><td colspan="7" class="empty"><h2>Nothing matches this filter</h2><div>Switch to All or add a job.</div></td></tr>`;
+    rowsEl.innerHTML = `<tr><td colspan="8" class="empty"><h2>Nothing matches this filter</h2><div>Switch to All or add a job.</div></td></tr>`;
     return;
   }
 
@@ -300,9 +301,10 @@ function render() {
       j.coverUrl && `<a href="${esc(j.coverUrl)}" target="_blank" rel="noopener">letter</a>`,
     ].filter(Boolean).join(' · ');
     return `<tr>
-      <td class="company">${esc(j.company)}<div class="flag">${esc(j.posted||'')}</div></td>
+      <td class="company">${esc(j.company)}</td>
       <td>${esc(j.role)}</td>
       <td class="loc">${esc(j.city||'')}${j.city&&j.country?', ':''}${esc(j.country||'')}<div class="flag">${esc(j.reloc||'')}</div></td>
+      <td class="loc">${esc(j.posted||'')}</td>
       <td>${sel}</td>
       <td class="loc">${esc(j.found||'')}</td>
       <td>${links||'<span class="loc">—</span>'}</td>
