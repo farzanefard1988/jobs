@@ -206,7 +206,7 @@ const SEED_JOBS = [
     found: "2026-10-08",
     sourceUrl: "https://getyourguide.careers/jobs/7559680",
     applyUrl: "https://getyourguide.careers/jobs/7559680",
-    resumeUrl: "resumes/getyourguide-b2c-berlin.html",
+    resumeUrl: "resumes/getyourguide-b2c-berlin.html", pdfLabel: "GetYourGuide, B2C, Berlin",
     coverUrl: "https://docs.google.com/document/d/1yX4lP9I_qZnSAbt1uGDGRtqy4VUlQ8UcfE5rPi2yyW4/edit",
     reloc: "Relocation assistance and visa sponsorship (per relocate.me)",
     notes: "B2C Reviews team — tight fit for SnappTrip filters/A-B/reviews work."
@@ -221,7 +221,7 @@ const SEED_JOBS = [
     found: "2026-10-08",
     sourceUrl: "https://relocate.me/germany/berlin/vimcar/senior-product-designer-9175",
     applyUrl: "https://relocate.me/germany/berlin/vimcar/senior-product-designer-9175",
-    resumeUrl: "resumes/vimcar-berlin.html",
+    resumeUrl: "resumes/vimcar-berlin.html", pdfLabel: "Vimcar, Berlin",
     coverUrl: "https://docs.google.com/document/d/1F-GWWWtv0HMWZ_vV3q5dczgMJVzgsWbKMPEiuZh_YuQ/edit",
     reloc: "Relocation assistance with a great team to support your move to Berlin",
     notes: "Fleet management SaaS — mobility-adjacent. Pair with MintList car-trading experience."
@@ -236,7 +236,7 @@ const SEED_JOBS = [
     found: "2026-10-09",
     sourceUrl: "https://jobs.generalcatalyst.com/companies/kayak/jobs/92332292-senior-product-designer-k4b",
     applyUrl: "https://jobs.ashbyhq.com/KAYAK/28686d98-f30e-422a-a5d9-c8680eff24b6",
-    resumeUrl: "resumes/kayak-k4b-berlin.html",
+    resumeUrl: "resumes/kayak-k4b-berlin.html", pdfLabel: "KAYAK, K4B, Berlin",
     coverUrl: "https://docs.google.com/document/d/1_CGu0_s3u2nwi1V6mK8eEOKPwpMJdULfJUJOjPU1wjA/edit",
     reloc: "Known Booking Holdings / HSM sponsor — Berlin office, Blue Card route — verify at application",
     notes: "KAYAK for Business (corporate travel). Direct match to SnappTrip multi-mode booking + cancellation flows."
@@ -251,7 +251,7 @@ const SEED_JOBS = [
     found: "2026-10-09",
     sourceUrl: "https://relocate.me/estonia/tallinn/taxify/product-designer-1806",
     applyUrl: "https://relocate.me/estonia/tallinn/taxify/product-designer-1806#job-apply",
-    resumeUrl: "resumes/bolt-tallinn.html",
+    resumeUrl: "resumes/bolt-tallinn.html", pdfLabel: "Bolt, Tallinn",
     coverUrl: "https://docs.google.com/document/d/1spkul7adMKDIpub9PPjaQejcpnXwf5vmXPabtGloOrs/edit",
     reloc: "Advanced relocation package — flight ticket, temporary housing, visa services (per relocate.me)",
     notes: "Mobility / ride-hailing. Mobile-first B2C fit; pair SnappTrip transport filters + MintList automotive marketplace."
@@ -309,8 +309,9 @@ function render() {
   rowsEl.innerHTML = list.map(j => {
     const st = j.status || 'found';
     const sel = `<select class="st" data-id="${esc(j.id)}">${STATUSES.map(s=>`<option value="${s}" ${s===st?'selected':''}>${LABELS[s]}</option>`).join('')}</select>`;
-    const resumePdf = j.resumePdfUrl || (j.resumeUrl && j.resumeUrl.startsWith('resumes/') && j.resumeUrl.endsWith('.html') ? j.resumeUrl.replace(/^resumes\//, 'resumes/pdf/').replace(/\.html$/, '.pdf') : null);
-    const coverPdf = j.coverPdfUrl || (resumePdf ? resumePdf.replace(/^resumes\/pdf\//, 'cover-letters/pdf/') : null);
+    const pdfLabel = j.pdfLabel || [j.company, j.city].filter(Boolean).join(', ');
+    const resumePdf = j.resumePdfUrl || (pdfLabel ? `resumes/pdf/${encodeURIComponent(`Farzaneh Abasnezhadfard — Resume (${pdfLabel}).pdf`)}` : null);
+    const coverPdf = j.coverPdfUrl || (pdfLabel ? `cover-letters/pdf/${encodeURIComponent(`Farzaneh Abasnezhadfard — Cover Letter (${pdfLabel}).pdf`)}` : null);
     const links = [
       j.sourceUrl && `<a href="${esc(j.sourceUrl)}" target="_blank" rel="noopener">source</a>`,
       j.applyUrl && j.applyUrl !== j.sourceUrl && `<a href="${esc(j.applyUrl)}" target="_blank" rel="noopener">apply</a>`,
