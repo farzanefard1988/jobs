@@ -1,93 +1,95 @@
-/* Shared resume stylesheet — gold-standard KAYAK PDF layout, one-page print */
+/* Single-column ATS-friendly resume stylesheet
+   Linear DOM order: Name → Contact → Experience → Skills → Education → Lecturer → Language.
+   No tables, no multi-column CSS, no background colors, no icons/images — safe for Taleo, iCIMS, Workday, Greenhouse, Lever, Ashby, Workable. */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
   --fg: #1a1a1a;
   --fg-muted: #5a5a5a;
   --accent: #1a73e8;
-  --rule: #d2d2d2;
-  --rule-strong: #cfd4dc;
+  --rule: #cfd4dc;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { background: #e8e8e8; color: var(--fg); font-family: 'Inter', -apple-system, Segoe UI, sans-serif; font-size: 10pt; line-height: 1.45; }
+html, body { background: #e8e8e8; color: var(--fg); font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 10.5pt; line-height: 1.45; }
 
 .page {
   width: 8.5in;
   min-height: 11in;
   margin: 24px auto;
-  padding: 0.5in 0.55in;
+  padding: 0.6in 0.75in;
   background: #fff;
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  display: grid;
-  grid-template-columns: 1fr 2.3in;
-  grid-template-rows: auto 1fr;
-  column-gap: 0.4in;
 }
 
-.left, .right { display: contents; }
-.left-head  { grid-column: 1; grid-row: 1; }
-.left-body  { grid-column: 1; grid-row: 2; padding-top: 10px; }
-.right-head { grid-column: 2; grid-row: 1; align-self: end; padding-bottom: 2px; }
-.right-body { grid-column: 2; grid-row: 2; padding-top: 10px; }
+/* Flatten the left/right wrappers so content flows top-to-bottom in a single column */
+.left, .right, .left-head, .left-body, .right-head, .right-body { display: block; }
 
-h1 { font-size: 28pt; font-weight: 700; letter-spacing: -0.015em; line-height: 1.02; margin-bottom: 4px; }
-.sub-title { font-size: 11pt; font-weight: 400; color: var(--fg); margin-bottom: 0; }
+h1 { font-size: 24pt; font-weight: 700; letter-spacing: -0.015em; line-height: 1.1; margin-bottom: 2px; }
+.sub-title { font-size: 12pt; font-weight: 400; color: var(--fg); margin-bottom: 12px; }
 
-h2 { font-size: 11pt; font-weight: 700; color: var(--accent); letter-spacing: 0.06em; border-bottom: 1px solid var(--rule-strong); padding-bottom: 4px; margin-top: 14px; margin-bottom: 8px; text-transform: uppercase; }
+/* Contact block — plain text, one line of labelled fields separated by bullets */
+.contact { font-size: 10pt; color: var(--fg); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+.contact p { display: inline; margin: 0; }
+.contact p::after { content: " • "; color: var(--fg-muted); }
+.contact p:last-child::after { content: ""; }
+.contact a { color: var(--accent); text-decoration: none; }
+.contact strong { font-weight: 600; }
+
+h2 { font-size: 11pt; font-weight: 700; color: var(--accent); letter-spacing: 0.06em; border-bottom: 1px solid var(--rule); padding-bottom: 3px; margin-top: 14px; margin-bottom: 8px; text-transform: uppercase; }
 h2:first-of-type { margin-top: 0; }
 
-/* ---------- LEFT COLUMN ---------- */
-.left h3 { display: inline; font-size: 10pt; font-weight: 400; }
+/* Experience entries — single column, inline Company + Role on one line */
+.left h3 { display: inline; font-size: 10.5pt; font-weight: 400; }
 .left h3 .company, .left h3 .company-plain { font-weight: 700; color: inherit; text-decoration: none; }
 .left h3 a.company:hover { color: var(--accent); }
-.left .job { margin-top: 10px; }
-.left .job:first-of-type { margin-top: 0; }
-.left .role { display: inline; font-style: italic; font-weight: 700; font-size: 10pt; }
+.left .role { display: inline; font-style: italic; font-weight: 700; font-size: 10.5pt; }
 .left .role::before { content: " — "; font-style: normal; font-weight: 400; }
-.left .meta { display: block; font-size: 9.5pt; color: var(--fg-muted); margin-top: 1px; margin-bottom: 5px; }
-.left ul { list-style: disc; padding-left: 16px; margin-top: 3px; margin-bottom: 10px; }
+.left .meta { display: block; font-size: 10pt; color: var(--fg-muted); margin-top: 1px; margin-bottom: 4px; }
+.left ul { list-style: disc; padding-left: 18px; margin-top: 2px; margin-bottom: 10px; }
 .left ul:last-child { margin-bottom: 0; }
 .left li { margin-bottom: 4px; font-size: 10pt; color: var(--fg); }
 .left li::marker { color: var(--fg); }
 .left li strong { font-weight: 700; }
 
-/* ---------- RIGHT COLUMN ---------- */
-.right .contact p { font-size: 9.5pt; line-height: 1.4; margin-bottom: 2px; color: var(--fg); }
-.right .contact a { color: var(--accent); text-decoration: none; }
-.right .contact strong { font-weight: 700; }
+/* Spacing between experience entries */
+.left-body h3 { margin-top: 0; }
+.left-body ul + h3 { margin-top: 0; }
+.left-body .meta + ul + h3 { margin-top: 10px; }
 
-.right .skill-group { margin-bottom: 8px; }
-.right .skill-group h4 { font-size: 9.5pt; font-weight: 700; margin-bottom: 2px; }
-.right .skill-group p { font-size: 9.5pt; color: var(--fg); line-height: 1.4; }
+/* Right column styles flattened — Skills grouped inline, Education/Lecturer linear */
+.right .skill-group { margin-bottom: 6px; }
+.right .skill-group h4 { display: inline; font-size: 10pt; font-weight: 700; margin-right: 4px; }
+.right .skill-group h4::after { content: ": "; font-weight: 400; }
+.right .skill-group p { display: inline; font-size: 10pt; color: var(--fg); }
 
-.right .edu-item, .right .lect-item { margin-bottom: 7px; }
-.right .edu-item .inst, .right .lect-item .inst { font-size: 9.5pt; font-weight: 700; }
-.right .edu-item .deg, .right .lect-item .deg { font-size: 9.5pt; }
-.right .edu-item .loc { font-size: 9.5pt; color: var(--fg-muted); }
+.right .edu-item, .right .lect-item { margin-bottom: 6px; }
+.right .edu-item .inst, .right .lect-item .inst { display: inline; font-size: 10pt; font-weight: 700; }
+.right .edu-item .deg, .right .lect-item .deg { display: inline; font-size: 10pt; margin-left: 4px; }
+.right .edu-item .deg::before, .right .lect-item .deg::before { content: " — "; font-weight: 400; }
+.right .edu-item .loc { display: inline; font-size: 10pt; color: var(--fg-muted); margin-left: 4px; }
+.right .edu-item .loc::before { content: ", "; }
 
-.right .lang p { font-size: 9.5pt; margin-bottom: 2px; }
+.right .lang p { display: inline; font-size: 10pt; margin-right: 10px; }
 .right .lang strong { font-weight: 700; }
 
 /* ---------- PRINT ---------- */
 @media print {
-  html, body { background: #fff; font-size: 9pt; line-height: 1.32; }
-  .page { margin: 0; box-shadow: none; width: 100%; min-height: auto; padding: 0.35in 0.45in; }
+  html, body { background: #fff; font-size: 8.5pt; line-height: 1.27; }
+  .page { margin: 0; box-shadow: none; width: 100%; min-height: auto; padding: 0.3in 0.45in; }
   @page { size: letter; margin: 0; }
-  h1 { font-size: 22pt; margin-bottom: 2px; }
-  .sub-title { font-size: 10pt; }
-  h2 { font-size: 9pt; margin-top: 9px; margin-bottom: 5px; padding-bottom: 2px; }
-  .left-body { padding-top: 8px; }
-  .right-body { padding-top: 8px; }
-  .left .job { margin-top: 7px; }
+  h1 { font-size: 20pt; }
+  .sub-title { font-size: 10pt; margin-bottom: 5px; }
+  .contact { font-size: 8.5pt; margin-bottom: 7px; padding-bottom: 4px; }
+  h2 { font-size: 9pt; margin-top: 7px; margin-bottom: 4px; padding-bottom: 2px; }
   .left h3, .left .role { font-size: 9pt; }
-  .left .meta { font-size: 8.5pt; margin-bottom: 3px; }
-  .left ul { margin-top: 2px; margin-bottom: 7px; padding-left: 13px; }
-  .left li { font-size: 8.5pt; margin-bottom: 2px; line-height: 1.3; }
-  .right .contact p, .right .skill-group p, .right .skill-group h4,
+  .left .meta { font-size: 8.5pt; margin-bottom: 2px; }
+  .left ul { margin-top: 1px; margin-bottom: 5px; padding-left: 14px; }
+  .left li { font-size: 8.5pt; margin-bottom: 1px; line-height: 1.28; }
+  .right .skill-group { margin-bottom: 3px; }
+  .right .skill-group h4, .right .skill-group p { font-size: 8.5pt; }
+  .right .edu-item, .right .lect-item { margin-bottom: 2px; }
   .right .edu-item .inst, .right .edu-item .deg, .right .edu-item .loc,
   .right .lect-item .inst, .right .lect-item .deg, .right .lect-item .loc,
   .right .lang p { font-size: 8.5pt; }
-  .right .skill-group { margin-bottom: 5px; }
-  .right .edu-item, .right .lect-item { margin-bottom: 4px; }
 }
