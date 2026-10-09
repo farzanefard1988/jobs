@@ -1,97 +1,93 @@
-/* Shared resume stylesheet — mirrors Farzaneh-Abasnezhadfard-Resume.pdf layout */
+/* Shared resume stylesheet — gold-standard KAYAK PDF layout, one-page print */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
   --fg: #1a1a1a;
-  --fg-muted: #4a4a4a;
-  --accent: #0b57d0;
-  --rule: #c8c8c8;
-  --rule-strong: #1a1a1a;
+  --fg-muted: #5a5a5a;
+  --accent: #1a73e8;
+  --rule: #d2d2d2;
+  --rule-strong: #cfd4dc;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { background: #e8e8e8; color: var(--fg); font-family: 'Inter', -apple-system, Segoe UI, sans-serif; font-size: 10.5pt; line-height: 1.45; }
+html, body { background: #e8e8e8; color: var(--fg); font-family: 'Inter', -apple-system, Segoe UI, sans-serif; font-size: 10pt; line-height: 1.45; }
 
 .page {
   width: 8.5in;
   min-height: 11in;
   margin: 24px auto;
-  padding: 0.55in 0.6in;
+  padding: 0.5in 0.55in;
   background: #fff;
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
   display: grid;
-  grid-template-columns: 1fr 2.4in;
+  grid-template-columns: 1fr 2.3in;
   grid-template-rows: auto 1fr;
-  column-gap: 0.35in;
+  column-gap: 0.4in;
 }
 
-/* Use display:contents so left/right wrappers vanish from layout and their
-   head/body children sit directly in the page grid, sharing row heights. */
 .left, .right { display: contents; }
 .left-head  { grid-column: 1; grid-row: 1; }
-.left-body  { grid-column: 1; grid-row: 2; padding-top: 18px; }
-.right-head { grid-column: 2; grid-row: 1; align-self: end; }
-.right-body { grid-column: 2; grid-row: 2; padding-top: 18px; }
+.left-body  { grid-column: 1; grid-row: 2; padding-top: 10px; }
+.right-head { grid-column: 2; grid-row: 1; align-self: end; padding-bottom: 2px; }
+.right-body { grid-column: 2; grid-row: 2; padding-top: 10px; }
 
-.left-head .sub-title { margin-bottom: 0; }
-.right-body h2:first-of-type { margin-top: 0; }
-.left-body  h2:first-of-type { margin-top: 0; }
-.right .contact p { font-size: 10pt; line-height: 1.4; margin-bottom: 2px; }
+h1 { font-size: 28pt; font-weight: 700; letter-spacing: -0.015em; line-height: 1.02; margin-bottom: 4px; }
+.sub-title { font-size: 11pt; font-weight: 400; color: var(--fg); margin-bottom: 0; }
 
-h1 { font-size: 28pt; font-weight: 700; letter-spacing: -0.01em; line-height: 1.05; margin-bottom: 2px; }
-.sub-title { font-size: 11.5pt; font-weight: 600; color: var(--fg); margin-bottom: 18px; }
-
-h2 { font-size: 10.5pt; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; border-bottom: 1.5px solid var(--rule-strong); padding-bottom: 3px; margin-top: 14px; margin-bottom: 10px; text-transform: uppercase; }
+h2 { font-size: 11pt; font-weight: 700; color: var(--accent); letter-spacing: 0.06em; border-bottom: 1px solid var(--rule-strong); padding-bottom: 4px; margin-top: 14px; margin-bottom: 8px; text-transform: uppercase; }
 h2:first-of-type { margin-top: 0; }
 
 /* ---------- LEFT COLUMN ---------- */
-.left h3 { font-size: 10.5pt; font-weight: 400; margin-top: 10px; }
-.left h3 .company { font-weight: 700; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; color: inherit; }
-.left h3 .company-plain { font-weight: 700; }
+.left h3 { display: inline; font-size: 10pt; font-weight: 400; }
+.left h3 .company, .left h3 .company-plain { font-weight: 700; color: inherit; text-decoration: none; }
 .left h3 a.company:hover { color: var(--accent); }
-.left h3:first-of-type { margin-top: 0; }
-.left .role { font-style: italic; font-weight: 600; font-size: 10.5pt; margin-top: 1px; }
-.left .meta { font-size: 10pt; color: var(--fg); margin-top: 1px; margin-bottom: 5px; }
-.left ul { list-style: disc; padding-left: 16px; margin-top: 2px; }
+.left .job { margin-top: 10px; }
+.left .job:first-of-type { margin-top: 0; }
+.left .role { display: inline; font-style: italic; font-weight: 700; font-size: 10pt; }
+.left .role::before { content: " — "; font-style: normal; font-weight: 400; }
+.left .meta { display: block; font-size: 9.5pt; color: var(--fg-muted); margin-top: 1px; margin-bottom: 5px; }
+.left ul { list-style: disc; padding-left: 16px; margin-top: 3px; margin-bottom: 10px; }
+.left ul:last-child { margin-bottom: 0; }
 .left li { margin-bottom: 4px; font-size: 10pt; color: var(--fg); }
 .left li::marker { color: var(--fg); }
+.left li strong { font-weight: 700; }
 
 /* ---------- RIGHT COLUMN ---------- */
-.right .contact p { font-size: 10pt; margin-bottom: 2px; color: var(--fg); }
+.right .contact p { font-size: 9.5pt; line-height: 1.4; margin-bottom: 2px; color: var(--fg); }
 .right .contact a { color: var(--accent); text-decoration: none; }
-.right .contact strong { font-weight: 600; }
+.right .contact strong { font-weight: 700; }
 
-.right .skill-group { margin-bottom: 10px; }
-.right .skill-group h4 { font-size: 10pt; font-weight: 700; margin-bottom: 3px; }
-.right .skill-group p { font-size: 10pt; color: var(--fg); line-height: 1.4; }
+.right .skill-group { margin-bottom: 8px; }
+.right .skill-group h4 { font-size: 9.5pt; font-weight: 700; margin-bottom: 2px; }
+.right .skill-group p { font-size: 9.5pt; color: var(--fg); line-height: 1.4; }
 
-.right .edu-item, .right .lect-item { margin-bottom: 8px; }
-.right .edu-item .inst, .right .lect-item .inst { font-size: 10pt; font-weight: 700; }
-.right .edu-item .deg, .right .lect-item .deg { font-size: 10pt; }
-.right .edu-item .loc { font-size: 10pt; color: var(--fg-muted); }
+.right .edu-item, .right .lect-item { margin-bottom: 7px; }
+.right .edu-item .inst, .right .lect-item .inst { font-size: 9.5pt; font-weight: 700; }
+.right .edu-item .deg, .right .lect-item .deg { font-size: 9.5pt; }
+.right .edu-item .loc { font-size: 9.5pt; color: var(--fg-muted); }
 
-.right .lang p { font-size: 10pt; margin-bottom: 2px; }
+.right .lang p { font-size: 9.5pt; margin-bottom: 2px; }
 .right .lang strong { font-weight: 700; }
 
 /* ---------- PRINT ---------- */
 @media print {
-  html, body { background: #fff; font-size: 9.5pt; line-height: 1.35; }
-  .page { margin: 0; box-shadow: none; width: 100%; min-height: auto; padding: 0.35in 0.5in; page-break-after: avoid; page-break-inside: avoid; break-inside: avoid; }
+  html, body { background: #fff; font-size: 9pt; line-height: 1.32; }
+  .page { margin: 0; box-shadow: none; width: 100%; min-height: auto; padding: 0.35in 0.45in; }
   @page { size: letter; margin: 0; }
-  h1 { font-size: 24pt; margin-bottom: 1px; }
-  .sub-title { font-size: 10.5pt; margin-bottom: 10px; }
-  h2 { font-size: 9.5pt; margin-top: 9px; margin-bottom: 6px; padding-bottom: 2px; }
-  .left h3 { font-size: 9.5pt; margin-top: 7px; }
-  .left .role { font-size: 9.5pt; }
-  .left .meta { font-size: 9pt; margin-bottom: 3px; }
-  .left ul { margin-top: 1px; padding-left: 14px; }
-  .left li { font-size: 9pt; margin-bottom: 2px; line-height: 1.3; }
-  .left-body { padding-top: 10px; }
-  .right-body { padding-top: 10px; }
+  h1 { font-size: 22pt; margin-bottom: 2px; }
+  .sub-title { font-size: 10pt; }
+  h2 { font-size: 9pt; margin-top: 9px; margin-bottom: 5px; padding-bottom: 2px; }
+  .left-body { padding-top: 8px; }
+  .right-body { padding-top: 8px; }
+  .left .job { margin-top: 7px; }
+  .left h3, .left .role { font-size: 9pt; }
+  .left .meta { font-size: 8.5pt; margin-bottom: 3px; }
+  .left ul { margin-top: 2px; margin-bottom: 7px; padding-left: 13px; }
+  .left li { font-size: 8.5pt; margin-bottom: 2px; line-height: 1.3; }
   .right .contact p, .right .skill-group p, .right .skill-group h4,
   .right .edu-item .inst, .right .edu-item .deg, .right .edu-item .loc,
   .right .lect-item .inst, .right .lect-item .deg, .right .lect-item .loc,
-  .right .lang p { font-size: 9pt; }
-  .right .skill-group { margin-bottom: 6px; }
-  .right .edu-item, .right .lect-item { margin-bottom: 5px; }
+  .right .lang p { font-size: 8.5pt; }
+  .right .skill-group { margin-bottom: 5px; }
+  .right .edu-item, .right .lect-item { margin-bottom: 4px; }
 }
