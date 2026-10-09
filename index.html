@@ -91,6 +91,10 @@
   .s-rejected  { background: color-mix(in oklab, var(--bad) 17%, transparent); color: var(--bad); }
   select.st { font: inherit; font-size: 11px; background: transparent; color: inherit; border: 1px solid var(--border); border-radius: 6px; padding: 3px 7px; }
   .flag { font-family: var(--serif); font-size: 11px; letter-spacing: 0.04em; color: var(--fg-muted); margin-top: 3px; font-style: italic; }
+  .mode { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; border: 1px solid var(--rule); color: var(--fg); background: var(--row-alt); vertical-align: middle; }
+  .mode-remote { background: #e6f4ea; color: #137333; border-color: #a8dab5; }
+  .mode-hybrid { background: #e8f0fe; color: #1a73e8; border-color: #a7c7fa; }
+  .mode-onsite { background: #fef7e0; color: #a56300; border-color: #fde293; }
   .notes { font-size: 12px; color: var(--fg-muted); white-space: pre-wrap; min-height: 1em; }
   .notes[contenteditable]:focus { outline: 2px solid var(--accent); outline-offset: 2px; background: var(--surface-2); border-radius: 4px; }
   dialog { border: 1px solid var(--border); border-radius: 12px; background: var(--surface); color: var(--fg); padding: 20px; max-width: 480px; width: 92vw; }
@@ -206,7 +210,7 @@ const SEED_JOBS = [
     found: "2026-10-08",
     sourceUrl: "https://getyourguide.careers/jobs/7559680",
     applyUrl: "https://getyourguide.careers/jobs/7559680",
-    resumeUrl: "resumes/getyourguide-b2c-berlin.html", pdfLabel: "GetYourGuide, B2C, Berlin",
+    resumeUrl: "resumes/getyourguide-b2c-berlin.html", pdfLabel: "GetYourGuide, B2C, Berlin", workMode: "Hybrid", sector: "travel experiences marketplace",
     coverUrl: "https://docs.google.com/document/d/1yX4lP9I_qZnSAbt1uGDGRtqy4VUlQ8UcfE5rPi2yyW4/edit",
     reloc: "Relocation assistance and visa sponsorship (per relocate.me)",
     notes: "B2C Reviews team — tight fit for SnappTrip filters/A-B/reviews work."
@@ -221,7 +225,7 @@ const SEED_JOBS = [
     found: "2026-10-09",
     sourceUrl: "https://jobs.generalcatalyst.com/companies/kayak/jobs/92332292-senior-product-designer-k4b",
     applyUrl: "https://jobs.ashbyhq.com/KAYAK/28686d98-f30e-422a-a5d9-c8680eff24b6",
-    resumeUrl: "resumes/kayak-k4b-berlin.html", pdfLabel: "KAYAK, K4B, Berlin",
+    resumeUrl: "resumes/kayak-k4b-berlin.html", pdfLabel: "KAYAK, K4B, Berlin", workMode: "Hybrid", sector: "travel metasearch / corporate travel",
     coverUrl: "https://docs.google.com/document/d/1_CGu0_s3u2nwi1V6mK8eEOKPwpMJdULfJUJOjPU1wjA/edit",
     reloc: "Known Booking Holdings / HSM sponsor — Berlin office, Blue Card route — verify at application",
     notes: "KAYAK for Business (corporate travel). Direct match to SnappTrip multi-mode booking + cancellation flows."
@@ -291,7 +295,7 @@ function render() {
     return `<tr>
       <td class="company">${esc(j.company)}</td>
       <td>${esc(j.role)}</td>
-      <td class="loc">${esc(j.city||'')}${j.city&&j.country?', ':''}${esc(j.country||'')}<div class="flag">${esc(j.reloc||'')}</div></td>
+      <td class="loc">${esc(j.city||'')}${j.city&&j.country?', ':''}${esc(j.country||'')}${j.workMode?` <span class="mode mode-${(j.workMode||'').toLowerCase().includes('remote')?'remote':(j.workMode||'').toLowerCase().replace(/[^a-z]/g,'')}">${esc(j.workMode)}</span>`:''}${j.sector?`<div class="flag"><strong>${esc(j.sector)}</strong></div>`:''}<div class="flag">${esc(j.reloc||'')}</div></td>
       <td class="loc">${esc(j.posted||'')}</td>
       <td>${sel}</td>
       <td class="loc">${esc(j.found||'')}</td>
