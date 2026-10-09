@@ -75,7 +75,23 @@ h2:first-of-type { margin-top: 0; }
 
 /* ---------- PRINT ---------- */
 @media print {
-  html, body { background: #fff; }
-  .page { margin: 0; box-shadow: none; width: 100%; min-height: auto; padding: 0.5in 0.55in; }
+  html, body { background: #fff; font-size: 9.5pt; line-height: 1.35; }
+  .page { margin: 0; box-shadow: none; width: 100%; min-height: auto; padding: 0.35in 0.5in; page-break-after: avoid; page-break-inside: avoid; break-inside: avoid; }
   @page { size: letter; margin: 0; }
+  h1 { font-size: 24pt; margin-bottom: 1px; }
+  .sub-title { font-size: 10.5pt; margin-bottom: 10px; }
+  h2 { font-size: 9.5pt; margin-top: 9px; margin-bottom: 6px; padding-bottom: 2px; }
+  .left h3 { font-size: 9.5pt; margin-top: 7px; }
+  .left .role { font-size: 9.5pt; }
+  .left .meta { font-size: 9pt; margin-bottom: 3px; }
+  .left ul { margin-top: 1px; padding-left: 14px; }
+  .left li { font-size: 9pt; margin-bottom: 2px; line-height: 1.3; }
+  .left-body { padding-top: 10px; }
+  .right-body { padding-top: 10px; }
+  .right .contact p, .right .skill-group p, .right .skill-group h4,
+  .right .edu-item .inst, .right .edu-item .deg, .right .edu-item .loc,
+  .right .lect-item .inst, .right .lect-item .deg, .right .lect-item .loc,
+  .right .lang p { font-size: 9pt; }
+  .right .skill-group { margin-bottom: 6px; }
+  .right .edu-item, .right .lect-item { margin-bottom: 5px; }
 }
