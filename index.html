@@ -360,6 +360,7 @@ function render() {
       j.sourceUrl && `<a href="${esc(j.sourceUrl)}" target="_blank" rel="noopener">source</a>`,
       j.applyUrl && j.applyUrl !== j.sourceUrl && `<a href="${esc(j.applyUrl)}" target="_blank" rel="noopener">apply</a>`,
       j.resumeUrl && `<a href="${esc(j.resumeUrl)}" target="_blank" rel="noopener">CV</a>`,
+      (j.resumePdfUrl || (j.resumeUrl && j.resumeUrl.startsWith('resumes/') && j.resumeUrl.endsWith('.html'))) && `<a href="${esc(j.resumePdfUrl || j.resumeUrl.replace(/^resumes\//, 'resumes/pdf/').replace(/\.html$/, '.pdf'))}" target="_blank" rel="noopener">PDF</a>`,
       j.coverUrl && `<a href="${esc(j.coverUrl)}" target="_blank" rel="noopener">letter</a>`,
     ].filter(Boolean).join(' · ');
     return `<tr>
