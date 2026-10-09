@@ -24,9 +24,11 @@ html, body { background: #e8e8e8; color: var(--fg); font-family: 'Inter', -apple
   gap: 0.35in;
 }
 
-/* Align right-column Skills h2 with left-column Experience h2 by matching the
-   right-column contact block height to the left-column h1 + sub-title. */
-.right .contact { min-height: 81px; margin-bottom: 0; }
+/* Align right-column Skills h2 with left-column Experience h2.
+   Left column before first h2: h1 (~41px) + sub-title (~22px) + 18px margin = ~81px.
+   Compress the contact block to the same height so Skills h2 lands at the same y. */
+.right .contact { margin-bottom: 0; }
+.right .contact p { font-size: 9pt; line-height: 1.3; margin-bottom: 1px; }
 .right h2:first-of-type { margin-top: 0; }
 
 h1 { font-size: 28pt; font-weight: 700; letter-spacing: -0.01em; line-height: 1.05; margin-bottom: 2px; }
@@ -38,6 +40,7 @@ h2:first-of-type { margin-top: 0; }
 /* ---------- LEFT COLUMN ---------- */
 .left h3 { font-size: 10.5pt; font-weight: 400; margin-top: 10px; }
 .left h3 .company { font-weight: 700; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; color: inherit; }
+.left h3 .company-plain { font-weight: 700; }
 .left h3 a.company:hover { color: var(--accent); }
 .left h3:first-of-type { margin-top: 0; }
 .left .role { font-style: italic; font-weight: 600; font-size: 10.5pt; margin-top: 1px; }
